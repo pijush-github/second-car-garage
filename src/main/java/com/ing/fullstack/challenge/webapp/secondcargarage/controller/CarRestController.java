@@ -1,11 +1,11 @@
 package com.ing.fullstack.challenge.webapp.secondcargarage.controller;
 
+import javax.validation.constraints.NotNull;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -26,15 +26,15 @@ public class CarRestController {
 
 
     @GetMapping(value = { "", "/" })
-    public ResponseEntity<CarDto> getCars() {
+    public @NotNull Iterable<CarDto> getCars() {
     	
     	LOGGER.info("CarRestController.getCars() invocation started");
     	
     	try {
 	    	final HttpHeaders theHeaders = new HttpHeaders();
 	    	theHeaders.add("Processed -", "CarRestController.getCars()");
-			CarDto theCarDto = carService.getAllWraehouseCars();
-	        return new ResponseEntity<CarDto>(theCarDto, theHeaders, HttpStatus.OK);
+	    	Iterable<CarDto> theCarDtos = carService.getAllWraehouseCars();
+	        return theCarDtos;
     	} catch (final Exception inEx) {
 			LOGGER.error("Error occurred at CarRestController.getCars(): {0}", inEx);
 			throw new APIRequestProcessingException(inEx);

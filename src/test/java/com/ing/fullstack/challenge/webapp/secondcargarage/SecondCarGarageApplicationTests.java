@@ -35,11 +35,11 @@ class SecondCarGarageApplicationTests {
 
 	@Test
     public void givenGetCarsApiCallWhenListofCarsRetrievedThenSizeMatch() {
-        ResponseEntity<CarDto> responseEntity = testRestTemplate.exchange("http://localhost:" + port + "/api/cars", HttpMethod.GET, null, new ParameterizedTypeReference<CarDto>() {
+        ResponseEntity<Iterable<CarDto>> responseEntity = testRestTemplate.exchange("http://localhost:" + port + "/api/cars", HttpMethod.GET, null, new ParameterizedTypeReference<Iterable<CarDto>>() {
         });
-        CarDto cars = responseEntity.getBody();
+        Iterable<CarDto> cars = responseEntity.getBody();
         Assertions
-          .assertThat(cars.getCars())
+          .assertThat(cars)
           .hasSize(3);
 
     }

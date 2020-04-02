@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { CarsComponent } from "./cars/cars.component";
 
 @Component({
   selector: 'app-garageshop',
@@ -7,9 +8,29 @@ import { Component, OnInit } from '@angular/core';
 })
 export class GarageshopComponent implements OnInit {
 
-  constructor() { }
+  private collapsed = true;
+  orderFinished = false;
+
+  @ViewChild('carsC')
+  carsC: CarsComponent;
+
+  constructor() {
+  }
 
   ngOnInit() {
+  }
+
+  toggleCollapsed(): void {
+    this.collapsed = !this.collapsed;
+  }
+
+  finishOrder(orderFinished: boolean) {
+    this.orderFinished = orderFinished;
+  }
+
+  reset() {
+    this.orderFinished = false;
+    //this.carsC.reset();
   }
 
 }
