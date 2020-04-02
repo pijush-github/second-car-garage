@@ -44,12 +44,5 @@ public class SecondCarGarageApplication implements CommandLineRunner {
 
 	    final Warehouse w = new Warehouse(Long.valueOf(1), "Warehouse A", l, c);
 	    warehouseRepository.save(w);
-	    
-	    System.out.println("Find All");
-	    warehouseRepository.findAll().forEach(System.out::println);
-	    System.out.println("Find By Name");
-	    System.out.println(warehouseRepository.findByName("Warehouse A").get(0));
-	    System.out.println("Find By Id");
-	    System.out.println(warehouseRepository.findById(Long.valueOf(1)).get());
 	}
 }

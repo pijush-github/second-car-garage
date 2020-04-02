@@ -1,3 +1,24 @@
-<p>
-  cars works!
-</p>
+<div class="row card-deck">
+  <div class="col-lg-4 col-md-6 mb-4" *ngFor="let car of cars">
+    <div class="card text-center">
+      <div class="card-header">
+        <h4>{{car.model}}</h4>
+      </div>
+      <div class="card-body">
+        <a href="#"><img class="card-img-top" src="" alt=""></a>
+        <h5 class="card-title">Since: {{car.date_added}}</h5>
+        <h3 class="card-title">${{car.price}}</h3>
+        <div class="row">
+          <div class="col-12" >
+            <button class="btn btn-primary" [disabled]="car.licensed === 'true'">Add To Cart
+            </button>
+          </div>
+          <div class="col-12">
+            <button class="btn btn-primary btn-block">Remove From Cart
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
