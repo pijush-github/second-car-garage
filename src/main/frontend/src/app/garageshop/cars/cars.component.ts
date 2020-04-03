@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { GarageshopService } from "../services/garageshop.service";
 import { Subscription } from "rxjs/internal/Subscription";
 import { Car } from "../models/car";
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cars',
@@ -12,9 +13,9 @@ export class CarsComponent implements OnInit {
 
   cars: Car[] = [];
   sub: Subscription;
-  productSelected: boolean = false;
+  carSelected: boolean = false;
 
-  constructor(private garageshopService: GarageshopService) {
+  constructor(private garageshopService: GarageshopService, private angRouter: Router) {
   }
 
   ngOnInit() {
@@ -29,6 +30,10 @@ export class CarsComponent implements OnInit {
         },
         (error) => console.log(error)
       );
+  }
+
+  pullCarDetail(car: Car) {
+    this.angRouter.navigate(['/cardetail', car.parentId, car.id]);
   }
 
 }

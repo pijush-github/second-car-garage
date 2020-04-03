@@ -2,6 +2,7 @@ package com.ing.fullstack.challenge.webapp.secondcargarage.dto;
 
 public class CarDto {
 
+	private String id;
 	private String parentId;
 	private String make;
 	private String model;
@@ -10,8 +11,9 @@ public class CarDto {
 	private String licensed;
 	private String date_added;
 	
-	public CarDto(final String parentId, final String make, final String model, final String year_model, final String price, final String licensed, final String date_added) {
-		this.parentId = parentId;
+	public CarDto(final String id, final String parentId, final String make, final String model, final String year_model, final String price, final String licensed, final String date_added) {
+		this.setId(id);
+		this.setParentId(parentId);
 		this.setMake(make);
 		this.setModel(model);
 		this.setYear_model(year_model);
@@ -19,6 +21,15 @@ public class CarDto {
 		this.setLicensed(licensed);
 		this.setDate_added(date_added);
 	}
+	
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
 
 	public String getParentId() {
 		return parentId;

@@ -6,14 +6,10 @@ import org.springframework.data.mongodb.core.mapping.Field;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import lombok.Getter;
-import lombok.ToString;
-
-@ToString
 @Document(collection = "warehouses")
 public class Warehouse {
 
-	@Id @Getter private Long _id;
+	@Id private Long _id;	
 	private String name;
 	private Location location;
 	@Field("cars")
@@ -21,10 +17,18 @@ public class Warehouse {
 	private Car car;
 	
 	public Warehouse(final Long _id, final String name, final Location location, final Car car) {
-		this._id = _id;
+		this.set_id(_id);
 		this.setName(name);
 		this.setLocation(location);
 		this.setCar(car);
+	}
+	
+	public Long get_id() {
+		return _id;
+	}
+
+	public void set_id(Long _id) {
+		this._id = _id;
 	}
 
 	public String getName() {

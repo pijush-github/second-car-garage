@@ -1,8 +1,9 @@
 package com.ing.fullstack.challenge.webapp.secondcargarage.domain;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
-
+@Document
 public class Vehicle {
 
 	@Id private Long _id;
@@ -14,13 +15,21 @@ public class Vehicle {
 	private String date_added;
 	
 	public Vehicle(final Long _id, final String make, final String model, final Long year_model, final Double price, final boolean licensed, final String date_added) {
-		this._id = _id;
+		this.set_id(_id);
 		this.setMake(make);
 		this.setModel(model);
 		this.setYear_model(year_model);
 		this.setPrice(price);
 		this.setLicensed(licensed);
 		this.setDate_added(date_added);
+	}
+	
+	public Long get_id() {
+		return _id;
+	}
+
+	public void set_id(Long _id) {
+		this._id = _id;
 	}
 
 	public String getMake() {
@@ -69,10 +78,6 @@ public class Vehicle {
 
 	public void setDate_added(String date_added) {
 		this.date_added = date_added;
-	}
-
-	private Long get_id() {
-		return _id;
 	}
 	
 	@Override

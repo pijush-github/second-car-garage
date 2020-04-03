@@ -1,5 +1,5 @@
-export class Car {
-
+export class CarDetail {
+    
     id: string;
     parentId: string;
     make: string;
@@ -8,8 +8,10 @@ export class Car {
     price: string;
     licensed: string;
     date_added: string;
+    location: string;
+    name: string;
 
-    constructor(id: string, parentId: string, make: string, model: string, year_model: string, price: string, licensed: string, date_added: string) {
+    constructor(id: string, parentId: string, make: string, model: string, year_model: string, price: string, licensed: string, date_added: string, location: string, name: string) {
         this.id = id;
         this.parentId = parentId;
         this.make = make;
@@ -18,5 +20,7 @@ export class Car {
         this.price = price;
         this.licensed = licensed;
         this.date_added = date_added;
+        this.location = location;
+        this.name = name;
     }
 }
