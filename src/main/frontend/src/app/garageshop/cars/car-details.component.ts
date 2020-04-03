@@ -32,4 +32,32 @@ export class CarDetailsComponent implements OnInit {
       );
   }
 
+  addToCart(carDetail: CarDetail) { 
+    this.carDetail.isInCart = true;
+    this.garageshopService.addItemToCart(carDetail)
+      .subscribe(
+        (data: any) => {
+          console.log(data)
+        },
+        (error) => {
+          console.log(error)
+          this.carDetail.isInCart = false;
+        }
+      );
+  }
+
+  deleteFromCart(carDetail: CarDetail) {
+    this.carDetail.isInCart = false;
+    this.garageshopService.removeItemFromCart(carDetail.parentId, carDetail.id)
+      .subscribe(
+        (data: any) => {
+          console.log(data)      
+        },
+        (error) => { console.log(error)
+        this.carDetail.isInCart = true;
+        }
+      );
+  }
+
+
 }

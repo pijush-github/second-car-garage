@@ -10,8 +10,12 @@ public class CarDto {
 	private String price;
 	private String licensed;
 	private String date_added;
+	private String inCart;
 	
-	public CarDto(final String id, final String parentId, final String make, final String model, final String year_model, final String price, final String licensed, final String date_added) {
+	public CarDto() {}
+	
+	public CarDto(final String id, final String parentId, final String make, final String model, final String year_model, final String price, final String licensed, final String date_added, final String inCart) {
+		super();
 		this.setId(id);
 		this.setParentId(parentId);
 		this.setMake(make);
@@ -20,6 +24,7 @@ public class CarDto {
 		this.setPrice(price);
 		this.setLicensed(licensed);
 		this.setDate_added(date_added);
+		this.setInCart(inCart);
 	}
 	
 	public String getId() {
@@ -85,5 +90,13 @@ public class CarDto {
 
 	public void setDate_added(String date_added) {
 		this.date_added = date_added;
+	}
+
+	public String getInCart() {
+		return inCart;
+	}
+
+	public void setInCart(String inCart) {
+		this.inCart = inCart;
 	}
 }

@@ -10,6 +10,7 @@ export class CarDetail {
     date_added: string;
     location: string;
     name: string;
+    isInCart: boolean;
 
     constructor(id: string, parentId: string, make: string, model: string, year_model: string, price: string, licensed: string, date_added: string, location: string, name: string) {
         this.id = id;
@@ -22,5 +23,6 @@ export class CarDetail {
         this.date_added = date_added;
         this.location = location;
         this.name = name;
+        this.isInCart = false;
     }
 }

@@ -1,0 +1,27 @@
+<div class="row card-deck">
+  <div class="col-lg-6">
+    <div class="card text-white bg-success mb-3">
+      <div class="card-header text-center">
+        <h2>Shopping Cart</h2>
+      </div>
+      <div class="card-body">
+        <div class="text-center">
+          <h5 class="card-title">Total Amount: ${{shoppingCart.totalCartAmount}}</h5>
+        </div>
+        <hr>
+        <h6 class="card-title">Number of car you picked: {{shoppingCart.allCartItems.length}}</h6>
+        <ul>
+          <li *ngFor="let vehicle of shoppingCart.allCartItems">
+            {{ vehicle }}
+          </li>
+        </ul>
+        <button class="btn btn-dark btn-block"
+          [disabled]="shoppingCart.allCartItems.length == 0">Checkout
+        </button> 
+        <hr>
+        <button class="btn btn-light btn-block" (click)="releaseItems()" [disabled]="shoppingCart.allCartItems.length == 0">Clear all items
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

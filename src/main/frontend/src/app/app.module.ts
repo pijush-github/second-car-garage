@@ -9,13 +9,15 @@ import { GarageshopComponent } from './garageshop/garageshop.component';
 import { CarsComponent } from './garageshop/cars/cars.component';
 import { CarDetailsComponent } from './garageshop/cars/car-details.component';
 import { AppRoutingModule } from './app-routing.module';
+import { ShoppingCartComponent } from './garageshop/shopping-cart/shopping-cart.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     GarageshopComponent,
     CarsComponent,
-    CarDetailsComponent
+    CarDetailsComponent,
+    ShoppingCartComponent
   ],
   imports: [
     BrowserModule,

@@ -9,12 +9,14 @@
         <h5 class="card-title">Available in <b>{{carDetail.name}}</b></h5>
         <h5 class="card-title">Warehouse Location - {{carDetail.location}}</h5>
         <h5 class="card-title">Available Since: {{carDetail.date_added}}</h5>
-        <h5 class="card-title">Launching Year {{carDetail.year_model}}</h5>
-        <h3 class="card-title">${{carDetail.price}}</h3>
+        <h5 class="card-title">Launching Year: {{carDetail.year_model}}</h5>
+        <h3 class="card-title">Price: ${{carDetail.price}}</h3>
         <div class="row">
           <div class="col-12">
-            <button class="btn btn-danger">Add to Cart
+            <button class="btn btn-success" (click)=addToCart(carDetail) [hidden]='carDetail.isInCart'>Add to Cart
             </button>
+            <button class="btn btn-danger" (click)=deleteFromCart(carDetail) [hidden]='!carDetail.isInCart'>Delete from Cart
+            </button> 
             <!-- 
             <a class="nav-link" routerLink="cars" routerLinkActive="active">Home<span
                 class="sr-only">(current)</span></a>

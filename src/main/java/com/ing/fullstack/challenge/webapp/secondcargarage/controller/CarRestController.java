@@ -16,10 +16,9 @@ import com.ing.fullstack.challenge.webapp.secondcargarage.dto.CarDto;
 import com.ing.fullstack.challenge.webapp.secondcargarage.error.APIRequestProcessingException;
 import com.ing.fullstack.challenge.webapp.secondcargarage.service.CarService;
 
-
+@CrossOrigin("*")
 @RestController
 @RequestMapping("/api")
-@CrossOrigin("*")
 public class CarRestController {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(CarRestController.class);
@@ -27,22 +26,27 @@ public class CarRestController {
 	@Autowired
 	private CarService carService;
 
-
+	/*
+	 * This GET method is exposed as REST-Api to get all Car resource
+	 */
     @GetMapping(value = { "", "/cars" })
-    public @NotNull Iterable<CarDto> getCars() {
-    	LOGGER.info("CarRestController.getCars() invocation started");
+    public @NotNull Iterable<CarDto> getAllCars() {
+    	LOGGER.info("CarRestController.getAllCars() invocation started");
     	try {
 	    	Iterable<CarDto> theCarDtos = carService.getAllWraehouseCars();
 	        return theCarDtos;
     	} catch (final Exception inEx) {
-			LOGGER.error("Error occurred at CarRestController.getCars(): {0}", inEx);
+			LOGGER.error("Error occurred at CarRestController.getAllCars(): {0}", inEx);
 			throw new APIRequestProcessingException(inEx);
 		}
     }
     
+    /*
+	 * This GET method is exposed as REST-Api to get individual Car resource
+	 */
     @GetMapping(value = { "", "/cars/{parent}/{id}" })
     public @NotNull CarDetailDto getCarDetail(@PathVariable("parent") String parent, @PathVariable("id") String id) {
-    	LOGGER.info("CarRestController.getCars() invocation started");
+    	LOGGER.info("CarRestController.getCarDetail() invocation started");
     	try {
     		CarDetailDto theCarDetailDto = carService.getCarDetail(parent, id);
     		return theCarDetailDto;

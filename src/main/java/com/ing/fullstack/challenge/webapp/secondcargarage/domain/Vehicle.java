@@ -81,7 +81,58 @@ public class Vehicle {
 	}
 	
 	@Override
-	  public String toString() {
+	public String toString() {
 	    return "vehicle : {_id=" + get_id() + ", make=" + getMake() + ", model=" + getModel() + ", year_model=" + getYear_model() + ", price=" + getPrice() + ", licensed=" + isLicensed() + ", date_added=" + getDate_added() +"}";
-	  }
+	}
+	
+	@Override
+    public boolean equals(Object o) {
+        if (o == this)
+            return true;
+        if (!(o instanceof Vehicle))
+            return false;
+        Vehicle other = (Vehicle) o;
+        boolean _idEquals = (this._id == null && other._id == null)
+          || (this._id != null && this._id.equals(other._id));
+        boolean makeEquals = (this.make == null && other.make == null)
+          || (this.make != null && this.make.equals(other.make));
+        boolean modelEquals = (this.model == null && other.model == null)
+          || (this.model != null && this.model.equals(other.model));
+        boolean year_modelEquals = (this.year_model == null && other.year_model == null)
+          || (this.year_model != null && this.year_model.equals(other.year_model));
+        boolean priceEquals = (this.price == null && other.price == null)
+          || (this.price != null && this.price.equals(other.price));
+        boolean licensedEquals = (this.licensed == other.licensed);
+        boolean date_addedEquals = (this.date_added == null && other.date_added == null)
+          || (this.date_added != null && this.make.equals(other.date_added));
+        
+        return _idEquals && makeEquals && modelEquals && year_modelEquals && priceEquals && licensedEquals && date_addedEquals;
+    }
+	
+	
+	@Override
+	public final int hashCode() {
+	    int intHashCode = 31;
+	    if (_id != null) {
+	    	intHashCode = 13 * intHashCode + _id.hashCode();
+	    }
+	    if (make != null) {
+	    	intHashCode = 13 * intHashCode + make.hashCode();
+	    }
+	    if (model != null) {
+	    	intHashCode = 13 * intHashCode + model.hashCode();
+	    }
+	    if (year_model != null) {
+	    	intHashCode = 13 * intHashCode + year_model.hashCode();
+	    }
+	    if (price != null) {
+	    	intHashCode = 13 * intHashCode + price.hashCode();
+	    }
+	    if (date_added != null) {
+	    	intHashCode = 13 * intHashCode + date_added.hashCode();
+	    }
+	    intHashCode = 13 * intHashCode + Boolean.valueOf(this.licensed).hashCode();
+	    
+	    return intHashCode;
+	}
 }
