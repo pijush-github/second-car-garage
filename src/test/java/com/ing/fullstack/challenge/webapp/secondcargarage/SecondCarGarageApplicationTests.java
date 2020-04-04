@@ -40,7 +40,7 @@ class SecondCarGarageApplicationTests {
         Iterable<CarDto> cars = responseEntity.getBody();
         Assertions
           .assertThat(cars)
-          .hasSize(3);
+          .hasSize(9);
 
     }
 }

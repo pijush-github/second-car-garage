@@ -1,4 +1,4 @@
-<div class="row card-deck">
+<div *ngIf="carDetail; else stillLoading" class="row card-deck">
   <div class="col-lg-12">
     <div class="card text-center">
       <div class="card-header">
@@ -17,19 +17,12 @@
             </button>
             <button class="btn btn-danger" (click)=deleteFromCart(carDetail) [hidden]='!carDetail.isInCart'>Delete from Cart
             </button> 
-            <!-- 
-            <a class="nav-link" routerLink="cars" routerLinkActive="active">Home<span
-                class="sr-only">(current)</span></a>
-              -->
           </div>
-          <!-- 
-          <div class="col-12">
-            <button class="btn btn-primary btn-block">Remove From Cart
-            </button>
-          </div>
-          -->
         </div>
       </div>
     </div>
   </div>
 </div>
+<ng-template #stillLoading>
+  <p>Loading...</p>
+</ng-template>

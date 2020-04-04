@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.mongo.embedded.EmbeddedMongoAutoConfiguration;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
 
@@ -17,7 +18,7 @@ import com.ing.fullstack.challenge.webapp.secondcargarage.domain.Warehouse;
 import com.ing.fullstack.challenge.webapp.secondcargarage.repository.WarehouseRepository;
 
 @ComponentScan
-@SpringBootApplication
+@SpringBootApplication(exclude = EmbeddedMongoAutoConfiguration.class)
 @EnableMongoRepositories(basePackageClasses = WarehouseRepository.class)
 public class SecondCarGarageApplication implements CommandLineRunner {
 
@@ -29,7 +30,7 @@ public class SecondCarGarageApplication implements CommandLineRunner {
 	}
 
 	/*
-	 * This method is required for data setup during application start up for dev-env
+	 * This method is required for data setup during application start up for local-env
 	 * @see org.springframework.boot.CommandLineRunner#run(java.lang.String[])
 	 */
 	@Override
