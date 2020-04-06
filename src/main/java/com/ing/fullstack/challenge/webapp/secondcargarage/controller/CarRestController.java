@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.ing.fullstack.challenge.webapp.secondcargarage.dto.CarDetailDto;
 import com.ing.fullstack.challenge.webapp.secondcargarage.dto.CarDto;
 import com.ing.fullstack.challenge.webapp.secondcargarage.error.APIRequestProcessingException;
-import com.ing.fullstack.challenge.webapp.secondcargarage.service.CarService;
+import com.ing.fullstack.challenge.webapp.secondcargarage.service.WarehouseCarService;
 
 @CrossOrigin("*")
 @RestController
@@ -24,7 +24,7 @@ public class CarRestController {
 	private static final Logger LOGGER = LoggerFactory.getLogger(CarRestController.class);
 	
 	@Autowired
-	private CarService carService;
+	private WarehouseCarService carService;
 
 	/*
 	 * This GET method is exposed as REST-Api to get all Car resource

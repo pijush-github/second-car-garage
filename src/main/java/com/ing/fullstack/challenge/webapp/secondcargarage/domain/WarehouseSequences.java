@@ -1,12 +1,13 @@
-package com.ing.fullstack.challenge.webapp.secondcargarage.service;
+package com.ing.fullstack.challenge.webapp.secondcargarage.domain;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document(collection = "carSequences")
-public class CarDatabseSequences {
+
+@Document(collection = "warehouseSequences")
+public class WarehouseSequences {
 	
-	@Id
+    @Id
     private String id;
     private int seq;
     

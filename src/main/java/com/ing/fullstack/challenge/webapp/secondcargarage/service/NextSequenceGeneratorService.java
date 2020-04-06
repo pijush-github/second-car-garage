@@ -12,6 +12,9 @@ import org.springframework.data.mongodb.core.MongoOperations;
 import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Service;
 
+import com.ing.fullstack.challenge.webapp.secondcargarage.domain.VehicleSequences;
+import com.ing.fullstack.challenge.webapp.secondcargarage.domain.WarehouseSequences;
+
 @Service
 public class NextSequenceGeneratorService {
 	
@@ -20,22 +23,22 @@ public class NextSequenceGeneratorService {
 
     public int getNextWarehoseSequence(String seqName)
     {
-        WarehouseDatabseSequences counter = mongoOperations.findAndModify(
+        WarehouseSequences counter = mongoOperations.findAndModify(
             query(where("_id").is(seqName)),
             new Update().inc("seq",1),
             options().returnNew(true).upsert(true),
-            WarehouseDatabseSequences.class);
+            WarehouseSequences.class);
         return !Objects.isNull(counter) ? counter.getSeq() : 1;
         
     }
     
-    public int getNextCarSequence(String seqName)
+    public int getNextVehicleSequence(String seqName)
     {
-    	CarDatabseSequences counter = mongoOperations.findAndModify(
+    	VehicleSequences counter = mongoOperations.findAndModify(
             query(where("_id").is(seqName)),
             new Update().inc("seq",1),
             options().returnNew(true).upsert(true),
-            CarDatabseSequences.class);
+            VehicleSequences.class);
         return !Objects.isNull(counter) ? counter.getSeq() : 1;
         
     }

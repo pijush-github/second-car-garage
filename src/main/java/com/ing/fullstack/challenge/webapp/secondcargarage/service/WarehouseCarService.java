@@ -16,9 +16,9 @@ import com.ing.fullstack.challenge.webapp.secondcargarage.error.ResourceNotFound
 import com.ing.fullstack.challenge.webapp.secondcargarage.repository.WarehouseRepository;
 
 @Service
-public class CarService {
+public class WarehouseCarService {
 
-	private static final Logger LOGGER = LoggerFactory.getLogger(CarService.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(WarehouseCarService.class);
 
 	@Autowired
 	private WarehouseRepository warehouseRepository;
