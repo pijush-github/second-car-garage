@@ -40,7 +40,6 @@ public class SecondCarGarageApplication implements CommandLineRunner {
 	@Override
 	public void run(String... inArgs) throws Exception {
 		theWarehouseRepository.deleteAll();
-		//int wId = 1; int vId = 1;
 	    final Vehicle wAv1 = new Vehicle(Long.valueOf(theNextSequenceGeneratorService.getNextVehicleSequence("vehicleSequences")),"Volkswagen", "Jetta III", Long.valueOf(1995), Double.valueOf(12947.52), true, "2018-09-18");
 	    final Vehicle wAv2 = new Vehicle(Long.valueOf(theNextSequenceGeneratorService.getNextVehicleSequence("vehicleSequences")),"Chevrolet", "Corvette", Long.valueOf(2004), Double.valueOf(20019.64), true, "2018-01-27");
 	    final Vehicle wAv3 = new Vehicle(Long.valueOf(theNextSequenceGeneratorService.getNextVehicleSequence("vehicleSequences")),"Ford", "Expedition EL", Long.valueOf(2008), Double.valueOf(27323.42), false, "2018-07-03");	    

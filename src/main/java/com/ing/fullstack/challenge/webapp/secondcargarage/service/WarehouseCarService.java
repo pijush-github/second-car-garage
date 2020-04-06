@@ -52,7 +52,7 @@ public class WarehouseCarService {
 	public CarDetailDto getCarDetail(final String inWarehouseId, final String inVehicleId) {
 		LOGGER.info("CarService.getCarDetail() invocation started");
 		Warehouse theWarehouse = warehouseRepository.findById(Long.valueOf(inWarehouseId))
-				.orElseThrow(() -> new ResourceNotFoundException("Wearhous is not found"));
+				.orElseThrow(() -> new ResourceNotFoundException("Wearhouse is not found"));
 		CarDetailDto theCarDetailDto = new CarDetailDto(String.valueOf(theWarehouse.get_id()), theWarehouse.getName(),
 				theWarehouse.getLocation(), theWarehouse.getCar().getVehicles().stream()
 						.filter(v -> String.valueOf(v.get_id()).equalsIgnoreCase(inVehicleId)).findAny());

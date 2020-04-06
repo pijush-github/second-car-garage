@@ -11,6 +11,7 @@ import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 
 import com.ing.fullstack.challenge.webapp.secondcargarage.controller.CarRestController;
+import com.ing.fullstack.challenge.webapp.secondcargarage.controller.ShoppingCartRestController;
 import com.ing.fullstack.challenge.webapp.secondcargarage.dto.CarDto;
 import com.ing.fullstack.challenge.webapp.secondcargarage.dto.ShoppingCartDto;
 
@@ -28,7 +29,7 @@ class SecondCarGarageApplicationTests {
     private CarRestController theCarRestController;
     
     @Autowired 
-    private CarRestController theShoppingCartRestController;
+    private ShoppingCartRestController theShoppingCartRestController;
     
 	@Test
 	void contextLoads() {
