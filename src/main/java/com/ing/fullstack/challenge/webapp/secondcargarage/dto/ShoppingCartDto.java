@@ -7,6 +7,7 @@ public class ShoppingCartDto {
 	private String totalCartAmount;
 	private List<String> allCartItems;
 	
+	public ShoppingCartDto() {}
 	
 	public ShoppingCartDto(final String totalCartAmount, final List<String> allCartItems) {
 		this.setTotalCartAmount(totalCartAmount);

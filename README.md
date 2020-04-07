@@ -188,10 +188,14 @@ Sample Data :
 Build & Run the application locally from Project root directory: 
  
 mvnw clean package spring-boot:repackage
+
+Access the codecoverage report from below location
+
+view report at '<project_root_directory>/target/site/jacoco/index.html'
  
 mvnw spring-boot:run
 
-Access the application from browser as -
+Access the application from browser with below url -
 
 http://localhost:8080/#
 

@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.ing.fullstack.challenge.webapp.secondcargarage.dto.CarDetailDto;
 import com.ing.fullstack.challenge.webapp.secondcargarage.dto.CarDto;
-import com.ing.fullstack.challenge.webapp.secondcargarage.error.APIRequestProcessingException;
 import com.ing.fullstack.challenge.webapp.secondcargarage.service.WarehouseCarService;
 
 @CrossOrigin("*")
@@ -32,13 +31,9 @@ public class CarRestController {
     @GetMapping(value = { "", "/cars" })
     public @NotNull Iterable<CarDto> getAllCars() {
     	LOGGER.info("CarRestController.getAllCars() invocation started");
-    	try {
-	    	Iterable<CarDto> theCarDtos = carService.getAllWraehouseCars();
-	        return theCarDtos;
-    	} catch (final Exception inEx) {
-			LOGGER.error("Error occurred at CarRestController.getAllCars(): {0}", inEx);
-			throw new APIRequestProcessingException(inEx);
-		}
+	    Iterable<CarDto> theCarDtos = carService.getAllWraehouseCars();
+	    LOGGER.info("CarRestController.getAllCars() invocation ended");
+	    return theCarDtos;
     }
     
     /*
@@ -47,13 +42,9 @@ public class CarRestController {
     @GetMapping(value = { "", "/cars/{parent}/{id}" })
     public @NotNull CarDetailDto getCarDetail(@PathVariable("parent") String parent, @PathVariable("id") String id) {
     	LOGGER.info("CarRestController.getCarDetail() invocation started");
-    	try {
-    		CarDetailDto theCarDetailDto = carService.getCarDetail(parent, id);
-    		return theCarDetailDto;
-    	} catch (final Exception inEx) {
-			LOGGER.error("Error occurred at CarRestController.getCarDetail(): {0}", inEx);
-			throw new APIRequestProcessingException(inEx);
-		}
+    	CarDetailDto theCarDetailDto = carService.getCarDetail(parent, id);
+    	LOGGER.info("CarRestController.getCarDetail() invocation ended");
+    	return theCarDetailDto;
     }
 	
 }

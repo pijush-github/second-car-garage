@@ -19,6 +19,8 @@ public class CarDetailDto {
 	private String location;
 	private String name;
 	
+	public CarDetailDto() {}
+	
 	public CarDetailDto(final String parentId, final String name, final Location location, final Optional<Vehicle> vehicle) {
 		if(vehicle.isPresent()) {
 			this.setParentId(parentId);

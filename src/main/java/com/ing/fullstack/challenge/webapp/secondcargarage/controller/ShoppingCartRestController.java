@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.ing.fullstack.challenge.webapp.secondcargarage.dto.CarDto;
 import com.ing.fullstack.challenge.webapp.secondcargarage.dto.ShoppingCartDto;
-import com.ing.fullstack.challenge.webapp.secondcargarage.error.APIRequestProcessingException;
 import com.ing.fullstack.challenge.webapp.secondcargarage.service.ShoppingCartService;
 
 @CrossOrigin("*")
@@ -24,66 +23,46 @@ import com.ing.fullstack.challenge.webapp.secondcargarage.service.ShoppingCartSe
 @RequestMapping("/api/shopping")
 public class ShoppingCartRestController {
 
-private static final Logger LOGGER = LoggerFactory.getLogger(ShoppingCartRestController.class);
-	
+	private static final Logger LOGGER = LoggerFactory.getLogger(ShoppingCartRestController.class);
+
 	@Autowired
 	private ShoppingCartService theShoppingCartService;
-	
-	
+
 	/*
 	 * This GET method is exposed as REST-Api to get ShoppingCart resource
 	 */
 	@GetMapping(value = { "", "/cart" })
-    public @NotNull ShoppingCartDto getShoppingCartDetail() {
-    	LOGGER.info("ShoppingCartRestController.getCartDetail() invocation started");
-    	try {
-    		ShoppingCartDto theShoppingCartDto = theShoppingCartService.getItemDetailFromCart();
-	        return theShoppingCartDto;
-    	} catch (final Exception inEx) {
-			LOGGER.error("Error occurred at ShoppingCartRestController.getCartDetail(): {0}", inEx);
-			throw new APIRequestProcessingException(inEx);
-		}
-    }
-	
+	public @NotNull ShoppingCartDto getShoppingCartDetail() {
+		LOGGER.info("ShoppingCartRestController.getCartDetail() invocation started");
+		return theShoppingCartService.getItemDetailFromCart();
+	}
+
 	/*
-	 * This POST method is exposed as REST-Api to add Car Resource under shopping-cart
+	 * This POST method is exposed as REST-Api to add Car Resource under
+	 * shopping-cart
 	 */
 	@PostMapping(value = { "", "/cart" })
-    public void addCarItem(@RequestBody CarDto car) {
-    	LOGGER.info("ShoppingCartRestController.addCarItem() invocation started");
-    	try {
-    		theShoppingCartService.addToCart(car);
-    	} catch (final Exception inEx) {
-			LOGGER.error("Error occurred at ShoppingCartRestController.addCarItem(): {0}", inEx);
-			throw new APIRequestProcessingException(inEx);
-		}
-    }
-	
+	public void addCarItem(@RequestBody CarDto car) {
+		LOGGER.info("ShoppingCartRestController.addCarItem() invocation started");
+		theShoppingCartService.addToCart(car);
+	}
+
 	/*
-	 * This DELET method is exposed as REST-Api to remove Car Resource from shopping-cart
+	 * This DELET method is exposed as REST-Api to remove Car Resource from
+	 * shopping-cart
 	 */
 	@DeleteMapping(value = { "", "/cart/{parent}/{child}" })
-    public void removeCarItem(@PathVariable("parent") String parent, @PathVariable("child") String child) {
-    	LOGGER.info("ShoppingCartRestController.removeCarItem() invocation started");
-    	try {
-    		theShoppingCartService.removeFromCart(parent, child);
-    	} catch (final Exception inEx) {
-			LOGGER.error("Error occurred at ShoppingCartRestController.removeCarItem(): {0}", inEx);
-			throw new APIRequestProcessingException(inEx);
-		}
-    }
-	
+	public void removeCarItem(@PathVariable("parent") String parent, @PathVariable("child") String child) {
+		LOGGER.info("ShoppingCartRestController.removeCarItem() invocation started");
+		theShoppingCartService.removeFromCart(parent, child);
+	}
+
 	/*
 	 * This DELET method is exposed as REST-Api to clear entire shopping-cart
 	 */
 	@DeleteMapping(value = { "", "/cart/delete/all" })
-    public @NotNull ShoppingCartDto clearAllCartItems() {
-    	LOGGER.info("ShoppingCartRestController.clearAllCartItems() invocation started");
-    	try {
-    		return theShoppingCartService.emptyCart();
-    	} catch (final Exception inEx) {
-			LOGGER.error("Error occurred at ShoppingCartRestController.clearAllCartItems(): {0}", inEx);
-			throw new APIRequestProcessingException(inEx);
-		}
-    }
+	public @NotNull ShoppingCartDto clearAllCartItems() {
+		LOGGER.info("ShoppingCartRestController.clearAllCartItems() invocation started");
+		return theShoppingCartService.emptyCart();
+	}
 }

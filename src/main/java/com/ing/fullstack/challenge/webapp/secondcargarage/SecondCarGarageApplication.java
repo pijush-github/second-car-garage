@@ -8,7 +8,6 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.mongo.embedded.EmbeddedMongoAutoConfiguration;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
 
 import com.ing.fullstack.challenge.webapp.secondcargarage.domain.Car;
@@ -18,7 +17,6 @@ import com.ing.fullstack.challenge.webapp.secondcargarage.domain.Warehouse;
 import com.ing.fullstack.challenge.webapp.secondcargarage.repository.WarehouseRepository;
 import com.ing.fullstack.challenge.webapp.secondcargarage.service.NextSequenceGeneratorService;
 
-@ComponentScan
 @SpringBootApplication(exclude = EmbeddedMongoAutoConfiguration.class)
 @EnableMongoRepositories(basePackageClasses = WarehouseRepository.class)
 public class SecondCarGarageApplication implements CommandLineRunner {

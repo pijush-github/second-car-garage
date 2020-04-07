@@ -19,17 +19,17 @@ public class GlobalExceptionHandlerAdvice extends ResponseEntityExceptionHandler
 	}
 	
 	@ExceptionHandler(ResourceNotFoundException.class)
-	public ResponseEntity<String> handleReportNotFoundException(ResourceNotFoundException inEx) {
+	public ResponseEntity<String> handleResourceNotFoundException(ResourceNotFoundException inEx) {
 		return error(HttpStatus.INTERNAL_SERVER_ERROR, inEx);
 	}
 	
 	@ExceptionHandler(ResourceStorageException.class)
-	public ResponseEntity<String> handleReportStorageException(ResourceStorageException inEx) {
+	public ResponseEntity<String> handleResourceStorageException(ResourceStorageException inEx) {
 		return error(HttpStatus.INTERNAL_SERVER_ERROR, inEx);
 	}
 	
 	@ExceptionHandler({APIRequestProcessingException.class})
-	public ResponseEntity<String> handleCustomerStatementProcessingException(APIRequestProcessingException inStProcEx) {
+	public ResponseEntity<String> handleAPIRequestProcessingException(APIRequestProcessingException inStProcEx) {
 		return error(HttpStatus.INTERNAL_SERVER_ERROR, inStProcEx);
 	}
 	

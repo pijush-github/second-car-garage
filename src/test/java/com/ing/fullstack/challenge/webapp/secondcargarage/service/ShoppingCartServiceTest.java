@@ -4,8 +4,8 @@
 package com.ing.fullstack.challenge.webapp.secondcargarage.service;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.AfterEach;
@@ -18,6 +18,8 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import com.ing.fullstack.challenge.webapp.secondcargarage.domain.Vehicle;
 import com.ing.fullstack.challenge.webapp.secondcargarage.dto.CarDto;
+import com.ing.fullstack.challenge.webapp.secondcargarage.error.APIRequestProcessingException;
+import com.ing.fullstack.challenge.webapp.secondcargarage.error.ResourceStorageException;
 import com.ing.fullstack.challenge.webapp.secondcargarage.util.ShoppingCartCacheUtil;
 
 @SpringBootTest
@@ -50,13 +52,25 @@ class ShoppingCartServiceTest {
 	@Test
 	void testGivenAddToCartCallAssertionTrueAsAddedSuccessfully() {
 		CarDto theCar3 = new CarDto("3","1","Ford","Expedition EL","2008","27323.42","false","2018-07-03","false");
-		assertFalse(theShoppingCartService.addToCart(theCar3).isPresent());
-		assertTrue(theShoppingCartService.addToCart(theCar3).isPresent());
+		assertTrue(theShoppingCartService.addToCart(theCar3));
+	}
+	
+	@Test
+	void testGivenAddToCartCallAssertionThrowsExceptionAsTriedToAddDuplicateItem() {
+		CarDto theCar3 = new CarDto("3","1","Ford","Expedition EL","2008","27323.42","false","2018-07-03","false");
+		assertTrue(theShoppingCartService.addToCart(theCar3));
+		assertThrows(ResourceStorageException.class, () -> theShoppingCartService.addToCart(theCar3));
 	}
 	
 	@Test
 	void testGivenRemoveFromCartCallAssertionTrueAsRemovedSuccessfully() {
-		assertTrue(theShoppingCartService.removeFromCart("1", "2").isPresent());
+		assertTrue(theShoppingCartService.removeFromCart("1", "2"));
+	}
+	
+	@Test
+	void testGivenRemoveFromCartCallAssertionThrowsExceptionAsTriedToAddDuplicateItem() {
+		assertTrue(theShoppingCartService.removeFromCart("1", "2"));
+		assertThrows(APIRequestProcessingException.class, () -> theShoppingCartService.removeFromCart("1", "2"));
 	}
 	
 	@Test

@@ -15,14 +15,14 @@ import org.springframework.stereotype.Service;
 import com.ing.fullstack.challenge.webapp.secondcargarage.domain.Vehicle;
 import com.ing.fullstack.challenge.webapp.secondcargarage.dto.CarDto;
 import com.ing.fullstack.challenge.webapp.secondcargarage.dto.ShoppingCartDto;
+import com.ing.fullstack.challenge.webapp.secondcargarage.error.APIRequestProcessingException;
+import com.ing.fullstack.challenge.webapp.secondcargarage.error.ResourceStorageException;
 import com.ing.fullstack.challenge.webapp.secondcargarage.util.ShoppingCartCacheUtil;
 
 @Service
 public class ShoppingCartService {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(ShoppingCartService.class);
-
-	//private static final Map<String, Vehicle> shoppingCartCache = new HashMap<>();
 
 	/*
 	 * This method is used to populates the entire cart-cache detail
@@ -44,24 +44,26 @@ public class ShoppingCartService {
 	/*
 	 * This method is used to add individual Car into cart-cache
 	 */
-	public Optional<Vehicle> addToCart(final CarDto inCar) {
+	public boolean addToCart(final CarDto inCar) {
 		final Map<String, Vehicle> shoppingCartCache = ShoppingCartCacheUtil.getInstance().getShoppingCartCache();
 		LOGGER.info("ShoppingCartService.getCartDetail() invocation started");
 		final Vehicle theVehicle = new Vehicle(Long.valueOf(inCar.getId()), inCar.getMake(), inCar.getModel(),
 				Long.valueOf(inCar.getYear_model()), Double.valueOf(inCar.getPrice()),
 				Boolean.valueOf(inCar.getLicensed()).booleanValue(), inCar.getDate_added());
 		final Vehicle theStoredVehicle = shoppingCartCache.put(inCar.getParentId()+inCar.getId(), theVehicle);
-		return Optional.ofNullable(theStoredVehicle);
+		Optional.ofNullable(theStoredVehicle).ifPresent(v -> {throw new ResourceStorageException("Item is already present under cart");});
+		return !Optional.ofNullable(theStoredVehicle).isPresent();
 	}
 
 	/*
 	 * This method is used to remove individual Car from cart-cache
 	 */
-	public Optional<Vehicle> removeFromCart(final String parent, final String child) {
+	public boolean removeFromCart(final String parent, final String child) {
 		final Map<String, Vehicle> shoppingCartCache = ShoppingCartCacheUtil.getInstance().getShoppingCartCache();
 		LOGGER.info("ShoppingCartService.getCartDetail() invocation started");
 		final Vehicle theVehicle = shoppingCartCache.remove(parent+child);
-		return Optional.ofNullable(theVehicle);
+		Optional.ofNullable(theVehicle).orElseThrow(() -> new APIRequestProcessingException("Can't remove Item from cart"));
+		return Optional.ofNullable(theVehicle).isPresent();
 	}
 
 	/*
